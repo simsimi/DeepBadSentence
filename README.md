@@ -6,7 +6,7 @@
 
 ### 심심이? 심심이!
 
- 심심이는 SMS 문자, MSN 채팅 봇을 지나 지금의 스마트폰 앱까지 지난 10년이 넘는 세월 동안 인공지능 채팅 봇으로 많은 사랑을 받아왔습니다. 그 결과 심심이는 누적 다운로드 1억 명에 월간 사용자 2천 만 명을 넘나드는 대형 서비스로 성장할 수 있었고 전 세계 81개 언어로 하루 천만 건 이상의 대화를 서비스하고 있습니다. "이거 알바 아니야?"라고 할 수 있는 수준을 훨씬 넘어서는 대화량이라고 할 수 있습니다.
+ 2002년 탄생한 심심이는 SMS 문자, MSN 채팅 봇을 지나 지금의 스마트폰 앱까지 지난 15년이 넘는 세월 동안 일상대화 인공지능 챗봇으로 많은 사랑을 받아왔습니다. 그 결과 심심이는 3억 5천 명의 누적 사용자, 월간 사용자 2천 만 명을 넘나드는 대형 서비스로 성장할 수 있었고 전 세계 81개 언어로 하루 천만 건 이상의 대화를 서비스하고 있습니다. "이거 알바 아니야?"라고 할 수 있는 수준을 훨씬 넘어서는 대화량이라고 할 수 있습니다.
 
 ![텍스트](https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/5s0V/image/N-Ej7rBj5D-v3QDdhrAgEjOO1_4.jpg)
 
@@ -122,7 +122,7 @@
 
 ### NLP의 시작은 Word2Vec부터?
 
- NLP 연구의 시작은 Sentence 혹은 Word를 Vector로 표현하는 것에서 출발합니다. 사실상 이것이 NLP의 가장 중요한 부분이라고 생각할 수 있습니다. 어떻게 Vectorize 하냐에 따라 결과가 판이해질 것이 분명하기 때문이죠. Deep Learning 프로젝트를 어느 정도 진행해본 경험이 있는 연구자라면 가장 쉽게 Word2Vec을 이용하는 방법을 생각할 것입니다. 저도 마찬가지로 Word2Vec을 떠올렸고 심심이 팀에서 보유한 모든 데이터셋을 이용해 Word2Vec을 진행했습니다. Sentence는 Word의 집합이고 Word2Vec의 결과물인 Word Vector를 이용해 Sentence를 Vectorize 할 수 있었습니다. 하지만 결과는 대실패였습니다. 학습이 거의 진행되지 않더군요. 이유가 무엇일까요?
+ NLP 연구의 시작은 Sentence 혹은 Word를 Vector로 표현하는 것에서 출발합니다. 사실상 이것이 NLP의 가장 중요한 부분이라고 생각할 수 있습니다. 어떻게 Vectorize 하냐에 따라 결과가 판이해질 것이 분명하기 때문이죠. Deep Learning 프로젝트를 어느 정도 진행해본 경험이 있는 연구자라면 가장 쉽게 Word2Vec을 이용하는 방법을 생각할 것입니다. 우리도 마찬가지로 Word2Vec을 떠올렸고 심심이 팀에서 보유한 모든 데이터셋을 이용해 Word2Vec을 진행했습니다. Sentence는 Word의 집합이고 Word2Vec의 결과물인 Word Vector를 이용해 Sentence를 Vectorize 할 수 있었습니다. 하지만 결과는 대실패였습니다. 학습이 거의 진행되지 않더군요. 이유가 무엇일까요?
 
 ```
 Word2Vec은 기본적으로 White Space를 기준으로 발전해왔지만, CJK의 경우 White Space가 무의미 하거나 아예 없다
@@ -130,7 +130,7 @@ Word2Vec은 기본적으로 White Space를 기준으로 발전해왔지만, CJK�
 
 띄어쓰기가 제대로 되어있지않은 경우 제대로된 Word가 뽑히지 않으니 당연한 결과였을지도 모릅니다. Word2Vec을 사용하려면 결국 맞춤법을 보정해서 제대로된 Word를 구성한 뒤에 적용할 수 있다는 뜻이 됩니다. 다행히 이전부터 한국어 NLP를 연구해온 분들 덕분에 [KoNLPy](http://konlpy-ko.readthedocs.io/ko/v0.4.3/)와 같은 훌륭한 형태소 분석기를 적용하면 됩니다. 형태소 분석이 된다는 것은 띄어쓰기를 보정 할 수 있다는 뜻이 되니까요!
 
-하지만, 81개 언어를 대상으로 서비스하는 심심이 팀에서 '형태소 분석'이라는 한글 전용 전처리 방법을 선택할 수는 없었습니다. 좀 더 일반화되고 보편적인 방법이 필요했습니다.
+하지만, 81개 언어를 대상으로 서비스하는 심심이 팀에서 '형태소 분석'이라는 한글 전용 전처리 방법을 선택할 수는 없었습니다. 사람들이 채팅에 사용하는 문장들은 형태소 분석이 잘 안되는 경우가 너무 많기도 합니다. 좀 더 일반화되고 보편적인 방법이 필요했습니다.
 
 ----------
 
@@ -151,7 +151,7 @@ Word2Vec은 기본적으로 White Space를 기준으로 발전해왔지만, CJK�
 
 ### Word가 아닌 Character를 중심으로
 
-심심이 팀은 Word가 아닌 Character 중심의 연구를 진행했습니다. Character를 Vector로 표현 할 방법을 고민한 결과 한 가지 방법을 생각해냈습니다. 바로 **Unicode**였죠. 컴퓨터는 Unicode Character를 Bit Array 형태로 관리합니다. Unicode를 이용하면 Character 하나가 0과 1로 나타내진다는 뜻이죠. 엄밀히 말하자면 0과 1로 나타낸게 아니고 원래부터 0과 1이었습니다. 이 값을 이용할 것입니다. 아주 직관적이면서도 간단한 접근법입니다. Character 1개를 16개의 Bit Array로 바꾸고, Sentence를 스캔하는 Window Size는 20으로 정했습니다. Network의 Input은 16 * 20 = 320개의 0과 1이 되는 것이죠. 데이터셋은 Zero Padding을 했고 줄바꿈/띄어쓰기는 아예 제거했습니다.
+심심이 팀은 Word가 아닌 Character 중심의 연구를 진행했습니다. Character를 Vector로 표현할 방법을 고민한 결과 한 가지 방법을 생각해냈습니다. 바로 **Unicode**였죠. 컴퓨터는 Unicode Character를 Bit Array 형태로 관리합니다. Unicode를 이용하면 Character 하나가 0과 1로 나타내진다는 뜻이죠. 엄밀히 말하자면 0과 1로 나타낸게 아니고 원래부터 0과 1이었습니다. 이 값을 이용할 것입니다. 아주 직관적이면서도 간단한 접근법입니다. Character 1개를 16개의 Bit Array로 바꾸고, Sentence를 스캔하는 Window Size는 20으로 정했습니다. Network의 Input은 16 * 20 = 320개의 0과 1이 되는 것이죠. 데이터셋은 Zero Padding을 했고 줄바꿈/띄어쓰기는 아예 제거했습니다.
 
 결국,
 
@@ -163,7 +163,7 @@ Character의 종류와 나타나는 횟수, 그리고 상대적인 위치로 나
 
 ----------
 
-### Accuracy를 높혀라!
+### Accuracy를 높여라!
 
 여기까지 읽은 Deep Learning 연구자라면 "그래 이제 시작이네"라는 말이 절로 나올 것입니다. 그렇습니다. 사실 여기서부터가 시작입니다. 1%씩 정확도를 높이면서 기술을 완성단계까지 끌어올려야합니다. Character를 이용한 시도에서 가능성을 발견한 심심이 팀은 정확도를 높이는데 모든 노력을 기울였습니다. 수많은 시도와 실패 끝에 정확도를 높이는데 성공한 방법들은 아래와 같습니다. Deep Learning 연구를 진행하는 팁이라고 할 수도 있고, 지루한 반복의 결과물이라고도 할 수 있습니다.
 
@@ -182,7 +182,7 @@ Sentence Vectorize에서 엄청나게 고통받았기 때문에 무심코 제거
 
 ### 2. Zero Padding이 아닌 Nine Padding을 하자!
 
-Deep Learning 연구에서 흔히 쓰이는 Padding은 Zero Padding입니다. Google의 알파고도 Zero Padding을 하고 제가 이전에 진행했었던 Image Classification이나 Object Classification 문제들도 모두 Zero Padding을 사용했었습니다. 실제로 대부분의 Network 들이 Zero Padding을 사용하고 아직까지 결과는 아주 훌륭했죠. 하지만, Unicode를 이용한 Text Classification 문제에서는 Zero Padding이 별로 도움이 되지 않았습니다. 저희 팀에서는 "**Bit Array로 표현된 Sentence에 0이 굉장히 많다**"라는 것과 "**생각보다 20자 이하의 문장들이 매우 많아 Zero Padding으로 0이 많이 채워진다**"라는 사실을 발견했습니다. 이 두 이야기를 정리하면 사실상 320개의 Input이 대부분 0이라는 것으로 결론이 납니다. 당연히, Network 학습에 악영향을 미칠 수 밖에 없겠죠. 그래서 생각한 아이디어가 Nine Padding이었습니다. Padding을 할 때 0이 아닌 9로 Padding을 한다는 아이디어였습니다. 0과 1에서 가장 멀리있는 숫자로 Padding을 하고 확실하게 White Space와 문장의 시작과 끝을 구분할 수 있게 바꾸었습니다. 이 효과는 굉장했습니다. 이 과정을 통해 96%의 정확도를 달성할 수 있었고 꽤 가시적인 성과를 냈다는 내부적인 평가가 있었죠.
+Deep Learning 연구에서 흔히 쓰이는 Padding은 Zero Padding입니다. Google의 알파고도 Zero Padding을 하고 이전에 진행했었던 Image Classification이나 Object Classification 문제들도 모두 Zero Padding을 사용했었습니다. 실제로 대부분의 Network 들이 Zero Padding을 사용하고 아직까지 결과는 아주 훌륭했죠. 하지만, Unicode를 이용한 Text Classification 문제에서는 Zero Padding이 별로 도움이 되지 않았습니다. 그러다가 "**Bit Array로 표현된 Sentence에 0이 굉장히 많다**"라는 것과 "**생각보다 20자 이하의 문장들이 매우 많아 Zero Padding으로 0이 많이 채워진다**"라는 사실을 발견했습니다. 이 두 이야기를 정리하면 사실상 320개의 Input이 대부분 0이라는 것으로 결론이 납니다. 당연히, Network 학습에 악영향을 미칠 수 밖에 없겠죠. 그래서 생각한 아이디어가 Nine Padding이었습니다. Padding을 할 때 0이 아닌 9로 Padding을 한다는 아이디어였습니다. 0과 1에서 가장 멀리있는 숫자로 Padding을 하고 확실하게 White Space와 문장의 시작과 끝을 구분할 수 있게 바꾸었습니다. 이 효과는 굉장했습니다. 이 과정을 통해 96%의 정확도를 달성할 수 있었고 꽤 가시적인 성과를 냈다는 내부적인 평가가 있었죠.
 
 ### 3. Window Size보다 많이 작다?
 
